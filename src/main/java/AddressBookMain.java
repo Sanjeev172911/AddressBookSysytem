@@ -7,25 +7,25 @@ public class AddressBookMain {
     static Map<String, Contact>AddressBook;
     static Scanner input=new Scanner(System.in);
     public static void takeContactsInfo(){
-        System.out.println("Enter your First Name");
+        System.out.println("Enter your First Name: ");
         String firstName=input.next();
-        System.out.println("Enter your Last Name");
+        System.out.println("Enter your Last Name: ");
         String lastName=input.next();
         input.nextLine();
-        System.out.println("Enter your Address");
+        System.out.println("Enter your Address: ");
         String address=input.nextLine();
-        System.out.println("Enter your City");
+        System.out.println("Enter your City: ");
         String city=input.next();
-        System.out.println("Enter your State");
+        System.out.println("Enter your State: ");
         String state=input.next();
-        System.out.println("Enter your Zip");
+        System.out.println("Enter your Zip: ");
         int zip=input.nextInt();
-        System.out.println("Enter your Phone Number");
+        System.out.println("Enter your Phone Number: ");
         String phoneNumber=input.next();
-        System.out.println("Enter your Email");
+        System.out.println("Enter your Email: ");
         String email=input.next();
 
-        System.out.println("Thank You for filling the details");
+        System.out.println("Thank You for filling the details.");
 
         Contact newContact=new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
         System.out.println(newContact.toString());
@@ -33,31 +33,28 @@ public class AddressBookMain {
     }
 
     public static void editContactInfo(){
-        System.out.println("Do You want to Edit your Details ");
-        String userInput=input.next();
-        if(!userInput.toLowerCase().equals("yes")) return;
-        System.out.println("Enter Your First Name");
+        System.out.println("Enter Your First Name: ");
         String firstName=input.next();
 
         if(!AddressBook.containsKey(firstName)){
-            System.out.println("No Contacts with this user Name");
+            System.out.println("No Contacts with this User Name: ");
             return;
         }
 
         Contact user=AddressBook.get(firstName);
 
-        System.out.println("Do you want to edit Your Last Name");
+        System.out.println("Do you want to Edit Your Last Name: ");
         String response=input.next();
         if(response.toLowerCase().equals("yes")){
-            System.out.println("Enter the updated value :");
+            System.out.println("Enter the updated value: ");
             String updatedValue=input.next();
             user.editLastName(updatedValue);
         }
 
-        System.out.println("Do you want to edit Your Address");
+        System.out.println("Do you want to edit Your Address: ");
         response=input.next();
         if(response.toLowerCase().equals("yes")){
-            System.out.println("Enter the updated value :");
+            System.out.println("Enter the updated value: ");
             String updatedValue=input.nextLine();
             input.nextLine();
             user.editAddress(updatedValue);
@@ -107,15 +104,34 @@ public class AddressBookMain {
         System.out.println(user.toString());
     }
 
+    public static void deleteContact(){
+        System.out.println("Enter Your First Name");
+        String firstName=input.next();
+
+        if(!AddressBook.containsKey(firstName)){
+            System.out.println("No Contacts with this user Name");
+            return;
+        }
+
+        AddressBook.remove(firstName);
+
+        System.out.println("Contact deleted successfully");
+    }
+
     public static void displayMessage(){
         System.out.println("Welcome to Address Book Program");
     }
 
     public static void main(String[] args) {
-        AddressBook =new HashMap<>();
+        AddressBook=new HashMap<>();
         displayMessage();
         takeContactsInfo();
-        editContactInfo();
+        System.out.println("Do You want to Edit your Details ");
+        String userInput=input.next();
+        if(userInput.toLowerCase().equals("yes")) editContactInfo();
 
+        System.out.println("Do you want to delete your Contact");
+        userInput=input.next();
+        if(userInput.toLowerCase().equals("yes")) deleteContact();
     }
 }
