@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class AddressBookMain {
     static Map<String, Contact>AddressBook;
+    static Scanner input=new Scanner(System.in);
     public static void takeContactsInfo(){
-        Scanner input=new Scanner(System.in);
         System.out.println("Enter your First Name");
         String firstName=input.next();
         System.out.println("Enter your Last Name");
         String lastName=input.next();
+        input.nextLine();
         System.out.println("Enter your Address");
         String address=input.nextLine();
-        input.nextLine();
         System.out.println("Enter your City");
         String city=input.next();
         System.out.println("Enter your State");
@@ -28,11 +28,94 @@ public class AddressBookMain {
         System.out.println("Thank You for filling the details");
 
         Contact newContact=new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
+        System.out.println(newContact.toString());
         AddressBook.put(firstName,newContact);
     }
+
+    public static void editContactInfo(){
+        System.out.println("Do You want to Edit your Details ");
+        String userInput=input.next();
+        if(!userInput.toLowerCase().equals("yes")) return;
+        System.out.println("Enter Your First Name");
+        String firstName=input.next();
+
+        if(!AddressBook.containsKey(firstName)){
+            System.out.println("No Contacts with this user Name");
+            return;
+        }
+
+        Contact user=AddressBook.get(firstName);
+
+        System.out.println("Do you want to edit Your Last Name");
+        String response=input.next();
+        if(response.toLowerCase().equals("yes")){
+            System.out.println("Enter the updated value :");
+            String updatedValue=input.next();
+            user.editLastName(updatedValue);
+        }
+
+        System.out.println("Do you want to edit Your Address");
+        response=input.next();
+        if(response.toLowerCase().equals("yes")){
+            System.out.println("Enter the updated value :");
+            String updatedValue=input.nextLine();
+            input.nextLine();
+            user.editAddress(updatedValue);
+        }
+
+        System.out.println("Do you want to edit Your City");
+        response=input.next();
+        if(response.toLowerCase().equals("yes")){
+            System.out.println("Enter the updated value :");
+            String updatedValue=input.next();
+            user.editCity(updatedValue);
+        }
+
+        System.out.println("Do you want to edit Your State");
+        response=input.next();
+        if(response.toLowerCase().equals("yes")){
+            System.out.println("Enter the updated value :");
+            String updatedValue=input.next();
+            user.editState(updatedValue);
+        }
+
+        System.out.println("Do you want to edit Your Zip");
+        response=input.next();
+        if(response.toLowerCase().equals("yes")){
+            System.out.println("Enter the updated value :");
+            int updatedValue=input.nextInt();
+            user.editZip(updatedValue);
+        }
+
+        System.out.println("Do you want to edit Your Phone Number");
+        response=input.next();
+        if(response.toLowerCase().equals("yes")){
+            System.out.println("Enter the updated value :");
+            String updatedValue=input.next();
+            user.editPhoneNumber(updatedValue);
+        }
+
+        System.out.println("Do you want to edit Your Email");
+        response=input.next();
+        if(response.toLowerCase().equals("yes")){
+            System.out.println("Enter the updated value :");
+            String updatedValue=input.next();
+            user.editEmail(updatedValue);
+        }
+
+        AddressBook.put(firstName,user);
+        System.out.println(user.toString());
+    }
+
+    public static void displayMessage(){
+        System.out.println("Welcome to Address Book Program");
+    }
+
     public static void main(String[] args) {
         AddressBook =new HashMap<>();
-        System.out.println("Welcome to Address Book Program");
+        displayMessage();
         takeContactsInfo();
+        editContactInfo();
+
     }
 }
