@@ -1,15 +1,17 @@
-import java.sql.SQLOutput;
+import com.sun.source.tree.Tree;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeSet;
 
-public class AddressBook {
+public class ContactDetail {
     static Map<String, Contact> ContactDetails;
     static Scanner input=new Scanner(System.in);
-    AddressBook(){
+    ContactDetail(){
         ContactDetails=new HashMap<>();
     }
-    public static void takeContactsInfo(){
+    public static void takeContactsInfo(Map<String , TreeSet<String>>AddressBook){
         System.out.println("Enter your First Name: ");
         String firstName=input.next();
         while(ContactDetails.containsKey(firstName)){
@@ -17,6 +19,7 @@ public class AddressBook {
             System.out.println("Please Re-Enter your First Name: ");
             firstName=input.next();
         }
+
         System.out.println("Enter your Last Name: ");
         String lastName=input.next();
         input.nextLine();
@@ -38,6 +41,13 @@ public class AddressBook {
         Contact newContact=new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
         System.out.println(newContact.toString());
         ContactDetails.put(firstName,newContact);
+
+        if(AddressBook.containsKey(city))AddressBook.get(city).add(firstName);
+        else{
+            TreeSet<String>set=new TreeSet<>();
+            set.add(firstName);
+            AddressBook.put(city,set);
+        }
     }
 
     public static void editContactInfo(){
@@ -112,7 +122,7 @@ public class AddressBook {
         System.out.println(user.toString());
     }
 
-    public static void deleteContact(){
+    public static void deleteContact(Map<String ,TreeSet<String>>AddressBook){
         System.out.println("Enter Your First Name");
         String firstName=input.next();
 
@@ -121,6 +131,8 @@ public class AddressBook {
             return;
         }
 
+        String address=ContactDetails.get(firstName).getCity();
+        AddressBook.get(address).remove(firstName);
         ContactDetails.remove(firstName);
 
         System.out.println("Contact deleted successfully");

@@ -20,6 +20,10 @@ public class Contact {
         this.email=email;
     }
 
+    public String getCity(){
+        return this.city;
+    }
+
     public void editLastName(String updatedName){
         this.lastName=updatedName;
     }
