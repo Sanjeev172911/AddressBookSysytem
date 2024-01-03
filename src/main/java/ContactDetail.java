@@ -213,4 +213,20 @@ public class ContactDetail {
         if(!flag) System.out.println("No contacts found in "+state);
     }
 
+    public int countBasedOnCity(String city){
+        if(ContactDetailsBasedOnCity.containsKey(city)){
+            return ContactDetailsBasedOnCity.get(city).size();
+        }
+
+        return 0;
+    }
+
+    public int countBasedOnState(String state){
+        if(ContactDetailsBasedOnState.containsKey(state)){
+            return ContactDetailsBasedOnState.get(state).size();
+        }
+
+        return 0;
+    }
+
 }
