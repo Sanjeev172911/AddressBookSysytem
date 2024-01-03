@@ -239,4 +239,36 @@ public class ContactDetail {
         }
     }
 
+
+    public void sortViaPersonsCity(Map<String , ArrayList<Contact>>AddressBook, String nameOfAddressBook){
+        ArrayList<Contact>contacts=AddressBook.get(nameOfAddressBook);
+        Comparator<Contact> cityComparator = Comparator.comparing(Contact::getCity);
+        Collections.sort(contacts,cityComparator);
+
+        for(Contact contact:contacts){
+            System.out.println(contact.toString());
+        }
+    }
+
+    public void sortViaPersonsState(Map<String , ArrayList<Contact>>AddressBook, String nameOfAddressBook){
+        ArrayList<Contact>contacts=AddressBook.get(nameOfAddressBook);
+        Comparator<Contact> stateComparator = Comparator.comparing(Contact::getState);
+        Collections.sort(contacts,stateComparator);
+
+        for(Contact contact:contacts){
+            System.out.println(contact.toString());
+        }
+    }
+
+    public void sortViaPersonsZip(Map<String , ArrayList<Contact>>AddressBook, String nameOfAddressBook){
+        ArrayList<Contact>contacts=AddressBook.get(nameOfAddressBook);
+        Comparator<Contact> zipComparator = Comparator.comparing(Contact::getZip);
+
+        Collections.sort(contacts,zipComparator);
+
+        for(Contact contact:contacts){
+            System.out.println(contact.toString());
+        }
+    }
+    
 }
