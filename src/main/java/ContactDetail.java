@@ -189,4 +189,28 @@ public class ContactDetail {
         if(!flag) System.out.println("No contacts found with this "+person+" name in "+state);
     }
 
+
+    public void viewContactBasedOnCity(String city){
+        boolean flag=false;
+        if(ContactDetailsBasedOnCity.containsKey(city)){
+            for(Contact contact:ContactDetailsBasedOnCity.get(city)){
+                    System.out.println(contact.toString());
+                    flag=true;
+            }
+        }
+        if(!flag) System.out.println("No contacts found in "+city);
+    }
+
+    public void viewContactBasedOnState(String state){
+        boolean flag=false;
+        if(ContactDetailsBasedOnCity.containsKey(state)){
+            for(Contact contact:ContactDetailsBasedOnState.get(state)){
+                    System.out.println(contact.toString());
+                    flag=true;
+            }
+        }
+
+        if(!flag) System.out.println("No contacts found in "+state);
+    }
+
 }
