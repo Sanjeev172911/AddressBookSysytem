@@ -34,5 +34,12 @@ public class AddressBookMain {
                 System.out.println(contact.toString());
             }
         }
+
+        System.out.println("Enter the name of Address Book :");
+        String addressBookName=input.next();
+
+        contactDetail.sortViaPersonName(AddressBook,addressBookName);
+
+
     }
 }

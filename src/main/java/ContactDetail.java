@@ -229,4 +229,14 @@ public class ContactDetail {
         return 0;
     }
 
+    public void sortViaPersonName(Map<String , ArrayList<Contact>>AddressBook, String nameOfAddressBook){
+        ArrayList<Contact>contacts=AddressBook.get(nameOfAddressBook);
+        Comparator<Contact> firstNameComparator = Comparator.comparing(Contact::getFirstName);
+        Collections.sort(contacts,firstNameComparator);
+
+        for(Contact contact:contacts){
+            System.out.println(contact.toString());
+        }
+    }
+
 }
