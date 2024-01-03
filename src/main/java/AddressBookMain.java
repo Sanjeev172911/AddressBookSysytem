@@ -27,5 +27,12 @@ public class AddressBookMain {
             String addressBookName=input.next();
             contactDetail.editContactInfo(AddressBook,addressBookName);
         }
+
+        for(String name:AddressBook.keySet()){
+            System.out.println("Name of AddressBook is "+name);
+            for(Contact contact:AddressBook.get(name)){
+                System.out.println(contact.toString());
+            }
+        }
     }
 }

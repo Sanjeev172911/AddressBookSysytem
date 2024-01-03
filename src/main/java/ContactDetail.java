@@ -3,14 +3,13 @@ import com.sun.source.tree.Tree;
 import java.util.*;
 
 public class ContactDetail {
-    private static Map<String, Contact> ContactDetails;
+    private static Map<String, ArrayList<Contact>> ContactDetailsBasedOnCity;
+    private static Map<String, ArrayList<Contact>> ContactDetailsBasedOnState;
     static Scanner input=new Scanner(System.in);
-    ContactDetail(){
-        ContactDetails=new HashMap<>();
-    }
 
-    public static Map<String, Contact> getContactDetails() {
-        return ContactDetails;
+    ContactDetail() {
+       ContactDetailsBasedOnCity=new HashMap<>();
+       ContactDetailsBasedOnState=new HashMap<>();
     }
 
 
@@ -55,7 +54,20 @@ public class ContactDetail {
 
         Contact newContact=new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
         System.out.println(newContact.toString());
-        ContactDetails.put(firstName,newContact);
+
+        if(ContactDetailsBasedOnState.containsKey(state)) ContactDetailsBasedOnState.get(state).add(newContact);
+        else {
+            ArrayList<Contact>contacts=new ArrayList<>();
+            contacts.add(newContact);
+            ContactDetailsBasedOnState.put(state,contacts);
+        }
+
+        if(ContactDetailsBasedOnCity.containsKey(city)) ContactDetailsBasedOnCity.get(state).add(newContact);
+        else {
+            ArrayList<Contact>contacts=new ArrayList<>();
+            contacts.add(newContact);
+            ContactDetailsBasedOnCity.put(city,contacts);
+        }
 
         if(AddressBook.containsKey(nameOfAddressBook))AddressBook.get(nameOfAddressBook).add(newContact);
         else{
@@ -135,7 +147,6 @@ public class ContactDetail {
             user.editEmail(updatedValue);
         }
 
-        ContactDetails.put(firstName,user);
         System.out.println(user.toString());
     }
 
@@ -151,19 +162,31 @@ public class ContactDetail {
 
     }
 
-    public static void deleteContact(Map<String ,TreeSet<String>>AddressBook){
-        System.out.println("Enter Your First Name");
-        String firstName=input.next();
+    public void searchContactBasedOnCity(String city,String person){
+        boolean flag=false;
+        if(ContactDetailsBasedOnCity.containsKey(city)){
+            for(Contact contact:ContactDetailsBasedOnCity.get(city)){
+                if(contact.getFirstName().equals(person)){
+                    System.out.println(contact.toString());
+                    flag=true;
+                }
+            }
+        }
+        if(!flag) System.out.println("No contacts found with this "+person+" name in "+city);
+    }
 
-        if(!ContactDetails.containsKey(firstName)){
-            System.out.println("No Contacts with this user Name");
-            return;
+    public void searchContactBasedOnState(String state,String person){
+        boolean flag=false;
+        if(ContactDetailsBasedOnCity.containsKey(state)){
+            for(Contact contact:ContactDetailsBasedOnState.get(state)){
+                if(contact.getFirstName().equals(person)){
+                    System.out.println(contact.toString());
+                    flag=true;
+                }
+            }
         }
 
-        String address=ContactDetails.get(firstName).getCity();
-        AddressBook.get(address).remove(firstName);
-        ContactDetails.remove(firstName);
-
-        System.out.println("Contact deleted successfully");
+        if(!flag) System.out.println("No contacts found with this "+person+" name in "+state);
     }
+
 }
