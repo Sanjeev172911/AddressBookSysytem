@@ -1,23 +1,38 @@
 import com.sun.source.tree.Tree;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ContactDetail {
-    static Map<String, Contact> ContactDetails;
+    private static Map<String, Contact> ContactDetails;
     static Scanner input=new Scanner(System.in);
     ContactDetail(){
         ContactDetails=new HashMap<>();
     }
-    public static void takeContactsInfo(Map<String , TreeSet<String>>AddressBook){
+
+    public static Map<String, Contact> getContactDetails() {
+        return ContactDetails;
+    }
+
+
+    public boolean isDuplicateName(ArrayList<Contact>contacts,String firstName){
+        for(Contact contact:contacts){
+            if(contact.getFirstName().equals(firstName)){
+               return true;
+            }
+        }
+        return false;
+    }
+
+
+    public void takeContactsInfo(Map<String , ArrayList<Contact>>AddressBook, String nameOfAddressBook){
         System.out.println("Enter your First Name: ");
         String firstName=input.next();
-        while(ContactDetails.containsKey(firstName)){
-            System.out.println("Entered First Name Already Taken.");
-            System.out.println("Please Re-Enter your First Name: ");
-            firstName=input.next();
+
+        if(AddressBook.containsKey(nameOfAddressBook)){
+            while(isDuplicateName(AddressBook.get(nameOfAddressBook),firstName)){
+                System.out.println("This name is already taken , Please Re-enter your first Name");
+                firstName=input.next();
+            }
         }
 
         System.out.println("Enter your Last Name: ");
@@ -42,24 +57,26 @@ public class ContactDetail {
         System.out.println(newContact.toString());
         ContactDetails.put(firstName,newContact);
 
-        if(AddressBook.containsKey(city))AddressBook.get(city).add(firstName);
+        if(AddressBook.containsKey(nameOfAddressBook))AddressBook.get(nameOfAddressBook).add(newContact);
         else{
-            TreeSet<String>set=new TreeSet<>();
-            set.add(firstName);
-            AddressBook.put(city,set);
+            ArrayList<Contact>contacts=new ArrayList<>();
+            contacts.add(newContact);
+            AddressBook.put(nameOfAddressBook,contacts);
         }
     }
 
-    public static void editContactInfo(){
-        System.out.println("Enter Your First Name: ");
-        String firstName=input.next();
-
-        if(!ContactDetails.containsKey(firstName)){
-            System.out.println("No Contacts with this User Name: ");
-            return;
+    public void isContactAvailable(ArrayList<Contact> contacts, String firstName){
+        Contact user=null;
+        for(Contact contact:contacts){
+            if(contact.getFirstName().equals(firstName)){
+                user=contact;
+            }
         }
 
-        Contact user=ContactDetails.get(firstName);
+        if(user==null){
+            System.out.println(firstName+" not available in Address Book");
+            return;
+        }
 
         System.out.println("Do you want to Edit Your Last Name: ");
         String response=input.next();
@@ -120,6 +137,18 @@ public class ContactDetail {
 
         ContactDetails.put(firstName,user);
         System.out.println(user.toString());
+    }
+
+    public void editContactInfo(Map<String , ArrayList<Contact>>AddressBook, String nameOfAddressBook){
+        if(!AddressBook.containsKey(nameOfAddressBook)){
+            System.out.println("No address book with this name exist");
+            return ;
+        }
+        System.out.println("Enter Your First Name: ");
+        String firstName=input.next();
+
+        isContactAvailable(AddressBook.get(nameOfAddressBook),firstName);
+
     }
 
     public static void deleteContact(Map<String ,TreeSet<String>>AddressBook){

@@ -8,6 +8,34 @@ public class Contact {
     private String phoneNumber;
     private String email;
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     Contact(String firstName, String lastName, String address,
             String city, String state, int zip, String phoneNumber, String email){
         this.firstName=firstName;
@@ -54,14 +82,14 @@ public class Contact {
 
     public String toString() {
         return "Contact{" +'\n'+
-                "firstName='" + firstName + '\n' +
-                ", lastName='" + lastName + '\n' +
-                ", address='" + address + '\n' +
-                ", city='" + city + '\n' +
-                ", state='" + state + '\n' +
-                ", zipCode='" + zip + '\n' +
-                ", phoneNumber='" + phoneNumber + '\n' +
-                ", email='" + email + '\n' +
+                "firstName= " + firstName + '\n' +
+                "lastName= " + lastName + '\n' +
+                "address= " + address + '\n' +
+                "city= " + city + '\n' +
+                "state= " + state + '\n' +
+                "zipCode= " + zip + '\n' +
+                "phoneNumber= " + phoneNumber + '\n' +
+                "email= " + email + '\n' +
                 '}';
     }
 }
