@@ -12,7 +12,6 @@ public class ContactDetail {
        ContactDetailsBasedOnState=new HashMap<>();
     }
 
-
     public boolean isDuplicateName(ArrayList<Contact>contacts,String firstName){
         for(Contact contact:contacts){
             if(contact.getFirstName().equals(firstName)){
@@ -22,7 +21,6 @@ public class ContactDetail {
         return false;
     }
 
-
     public void takeContactsInfo(Map<String , ArrayList<Contact>>AddressBook, String nameOfAddressBook){
         System.out.println("Enter your First Name: ");
         String firstName=input.next();
@@ -30,25 +28,24 @@ public class ContactDetail {
         if(AddressBook.containsKey(nameOfAddressBook)){
             while(isDuplicateName(AddressBook.get(nameOfAddressBook),firstName)){
                 System.out.println("This name is already taken , Please Re-enter your first Name");
-                firstName=input.next();
+                firstName=input.nextLine();
             }
         }
 
         System.out.println("Enter your Last Name: ");
-        String lastName=input.next();
-        input.nextLine();
+        String lastName=input.nextLine();
         System.out.println("Enter your Address: ");
         String address=input.nextLine();
         System.out.println("Enter your City: ");
-        String city=input.next();
+        String city=input.nextLine();
         System.out.println("Enter your State: ");
-        String state=input.next();
+        String state=input.nextLine();
         System.out.println("Enter your Zip: ");
-        int zip=input.nextInt();
+        String zip=input.nextLine();
         System.out.println("Enter your Phone Number: ");
-        String phoneNumber=input.next();
+        String phoneNumber=input.nextLine();
         System.out.println("Enter your Email: ");
-        String email=input.next();
+        String email=input.nextLine();
 
         System.out.println("Thank You for filling the details.");
 
@@ -91,15 +88,15 @@ public class ContactDetail {
         }
 
         System.out.println("Do you want to Edit Your Last Name: ");
-        String response=input.next();
+        String response=input.nextLine();
         if(response.equalsIgnoreCase("yes")){
             System.out.println("Enter the updated value: ");
-            String updatedValue=input.next();
+            String updatedValue=input.nextLine();
             user.editLastName(updatedValue);
         }
 
         System.out.println("Do you want to edit Your Address: ");
-        response=input.next();
+        response=input.nextLine();
         if(response.equalsIgnoreCase("yes")){
             System.out.println("Enter the updated value: ");
             String updatedValue=input.nextLine();
@@ -108,7 +105,7 @@ public class ContactDetail {
         }
 
         System.out.println("Do you want to edit Your City");
-        response=input.next();
+        response=input.nextLine();
         if(response.equalsIgnoreCase("yes")){
             System.out.println("Enter the updated value :");
             String updatedValue=input.next();
@@ -116,34 +113,34 @@ public class ContactDetail {
         }
 
         System.out.println("Do you want to edit Your State");
-        response=input.next();
+        response=input.nextLine();
         if(response.equalsIgnoreCase("yes")){
             System.out.println("Enter the updated value :");
-            String updatedValue=input.next();
+            String updatedValue=input.nextLine();
             user.editState(updatedValue);
         }
 
         System.out.println("Do you want to edit Your Zip");
-        response=input.next();
+        response=input.nextLine();
         if(response.equalsIgnoreCase("yes")){
             System.out.println("Enter the updated value :");
-            int updatedValue=input.nextInt();
+            String updatedValue=input.nextLine();
             user.editZip(updatedValue);
         }
 
         System.out.println("Do you want to edit Your Phone Number");
-        response=input.next();
+        response=input.nextLine();
         if(response.equalsIgnoreCase("yes")){
             System.out.println("Enter the updated value :");
-            String updatedValue=input.next();
+            String updatedValue=input.nextLine();
             user.editPhoneNumber(updatedValue);
         }
 
         System.out.println("Do you want to edit Your Email");
-        response=input.next();
+        response=input.nextLine();
         if(response.equalsIgnoreCase("yes")){
             System.out.println("Enter the updated value :");
-            String updatedValue=input.next();
+            String updatedValue=input.nextLine();
             user.editEmail(updatedValue);
         }
 

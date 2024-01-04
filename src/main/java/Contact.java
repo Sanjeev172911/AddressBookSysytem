@@ -4,7 +4,7 @@ public class Contact {
     private String address;
     private String city;
     private String state;
-    private int zip;
+    private String zip;
     private String phoneNumber;
     private String email;
 
@@ -24,7 +24,7 @@ public class Contact {
         return state;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
@@ -37,7 +37,7 @@ public class Contact {
     }
 
     Contact(String firstName, String lastName, String address,
-            String city, String state, int zip, String phoneNumber, String email){
+            String city, String state, String zip, String phoneNumber, String email){
         this.firstName=firstName;
         this.lastName=lastName;
         this.address=address;
@@ -68,7 +68,7 @@ public class Contact {
         this.state=updatedState;
     }
 
-    public void editZip(int updatedZip){
+    public void editZip(String updatedZip){
         this.zip=updatedZip;
     }
 
@@ -82,14 +82,14 @@ public class Contact {
 
     public String toString() {
         return "Contact{" +'\n'+
-                "firstName= " + firstName + '\n' +
-                "lastName= " + lastName + '\n' +
-                "address= " + address + '\n' +
-                "city= " + city + '\n' +
-                "state= " + state + '\n' +
-                "zipCode= " + zip + '\n' +
-                "phoneNumber= " + phoneNumber + '\n' +
-                "email= " + email + '\n' +
+                    "firstName = " + firstName + '\n' +
+                    "lastName = " + lastName + '\n' +
+                    "address = " + address + '\n' +
+                    "city = " + city + '\n' +
+                    "state = " + state + '\n' +
+                    "zipCode = " + zip + '\n' +
+                    "phoneNumber = " + phoneNumber + '\n' +
+                    "email = " + email + '\n' +
                 '}';
     }
 }

@@ -1,0 +1,11 @@
+Contact{
+firstName = Sucheta
+lastName = 
+address = Kadru
+city = Ranchi
+state = Jgarkhand
+zipCode = 834002
+phoneNumber = 9905041063
+email = Sucgeta@gmail.com
+}
+

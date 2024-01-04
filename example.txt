@@ -1,0 +1,21 @@
+Contact{
+firstName = Anaya
+lastName = Astavia
+address = Banquet Mall
+city = Mumbai
+state = Maharashtra
+zipCode = 234567
+phoneNumber = 8102912345
+email = amaiya@quitr.com
+}
+
+Contact{
+firstName= Anaya
+lastName= Astavia
+address= Banquet Mall
+city= Mumbai
+state= Maharashtra
+zipCode= 234567
+phoneNumber= 8102912345
+email= amaiya@quitr.com
+}
