@@ -1,9 +1,10 @@
 ------- Use Case 1 ----------------------
 create database AddressBook;
 show databases;
-use addressbook;
+use addressBook;
 
 ------ Use Case 2 -------------------------
+
 create table contactDetails(
 	firstName varchar(50),
     lastName varChar(50),
@@ -31,8 +32,8 @@ insert into contactDetails values ("Rohan","Dubey","Jodhpur","Rajasthan",784001,
 ,("Sucheta","Mishra","Bishtupur","Jamshedpur",800431,"91 9888945612","suchetaMishra@gmail.com");
 
 
-
 -- Use Case 4 ----------------------------------------
+
 SET SQL_SAFE_UPDATES = 0;
 update contactDetails set firstName="Sanjeev",lastName="Kapoor",state="Jharkhand" WHERE firstName="sanjeev";
 update contactDetails set state="Jharkhand" WHERE firstName="Adarsh";
@@ -50,12 +51,12 @@ select * from contactDetails;
 delete from contactDetails where firstName="Saurav";
 
 -- Use Case 6 --------------------------------------------------------
-
 	-- Person Belonging to City Jamshedpur ------------------------------
 
 select * from contactDetails where city="Jamshedpur";
 
 	-- Person Belonging to state Rajasthan ------------------------------
+
 select * from contactDetails where state="Rajasthan";
 
 -- Use Case 7 --------------------------------------------------------
@@ -64,19 +65,19 @@ select * from contactDetails where state="Rajasthan";
 select count(*) as Size from contactDetails where city="Jamshedpur";
 
 	-- Size of Address Book based on state  Rajasthan ------------------------------
+
 select count(*) as size  from contactDetails where state="Rajasthan";
 
 -- Use Case 8 ------------------------------------------------------
 
 select * from contactDetails where city="Jamshedpur" order by firstName;
 
-
--- Use Case 9 -------------------------------------------------------------
+-- Use Case 9 --------------------------------------------------------
 
 alter table contactDetails add name varchar(50) ,add type enum("Family","Friend","Profession");
 
 
-update contactDetails set firstName="Sanjeev",lastName="Kapoor",state="Jharkhand",name="Rishab Contacts",type="Friend"  WHERE firstName="sanjeev";
+update contactDetails set firstName="Sanjeev",lastName="Kapoor",state="Jharkhand",name="Rishab Contacts",type="Friend" WHERE firstName="sanjeev";
 update contactDetails set state="Jharkhand",name="Rishab Contacts",type="Family" WHERE firstName="Adarsh";
 update contactDetails set state="Jharkhand",name="Rishab Contacts",type="Family" WHERE firstName="Mohan";
 update contactDetails set state="Jharkhand",name="Rishab Contacts",type="Friend" WHERE firstName="Mukul";
@@ -88,11 +89,11 @@ update contactDetails set name="Rishab Contacts",type="profession" WHERE firstNa
 
 select * from contactDetails;
 
--- Use case 10 -------------------------------------------------------------------
+-- Use case 10 ------------------------------------------------------------
 
 select count(type),type,name from contactDetails group by type,name;
 
--- Use case 11 --------------------------------------------------------------------
+-- Use case 11 -------------------------------------------------------------
 
 alter table contactDetails drop column name;
 alter table contactDetails drop column type;
